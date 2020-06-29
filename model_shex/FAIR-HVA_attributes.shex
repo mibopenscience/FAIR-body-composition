@@ -46,7 +46,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 
 :personStudySubjectRoleShape IRI {
-  a [obo:NCIT_C70665]
+  a [obo:NCIT_C70665];
+  sio:SIO:000062  @:ffmAssessmentShape*
 }
 
 :personPatientRoleShape IRI {
@@ -101,4 +102,45 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 :cmUnitShape IRI {
   a [obo:UO_0000015]
+}
+
+
+:ffmAssessmentShape IRI {
+  sio:SIO_000332 @:personFFMAttributeShape;
+  sio:SIO_000213 @:bodpodShape*;
+  sio:SIO_000213 @:biaShape*
+}
+
+
+
+:bodpodShape IRI {
+  a [obo:ERO_0002185];
+  sio:SIO_000229 @:personFFMQualityShape;
+}
+
+
+:biaShape IRI {
+  a [obo:ERO_0002184];
+  sio:SIO_000229 @:reactanceShape;
+  sio:SIO_000229 @:resistanceShape;
+}
+
+
+
+:reactanceShape IRI {
+  a [obo:NCIT_C43548];
+  sio:SIO_000300 xsd:float;
+  sio:SIO_000221 @:ohmUnitShape;
+}
+
+
+:resistanceShape IRI {
+  a [<http://biomodels.net/SBO/SBO_0000254>];
+  sio:SIO_000300 xsd:float;
+  sio:SIO_000221 @:ohmUnitShape;
+}
+
+
+:ohmUnitShape IRI {
+  a [obo:NCIT_C42554]
 }
