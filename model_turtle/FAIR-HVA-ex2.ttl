@@ -1,0 +1,71 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sio: <http://semanticscience.org/resource/> .
+
+#Model with dummy data
+#Person, masculine gender, not a patient, FFM via BODPOD, no BIA
+
+#Person of type Human being
+#Person has attributes
+<https://www.hva.nl/rdf/person/2335> a <http://purl.obolibrary.org/obo/NCBITaxon_9606>;
+  sio:SIO_000008 <https://www.hva.nl/rdf/person/2335/age_attribute>, <https://www.hva.nl/rdf/person/2335/body_weight_attribute> .
+
+#Age
+<https://www.hva.nl/rdf/person/2335/age_attribute> a <https://loinc.org/21612-7/>;
+  sio:SIO_000217 <https://www.hva.nl/rdf/person/2335/age_quality> .
+
+<https://www.hva.nl/rdf/person/2335/age_quality> a sio:SIO_000005;
+  sio:SIO_000221 <https://www.hva.nl/rdf/unit/year>;
+  sio:SIO_000300 "60"^^<http://www.w3.org/2001/XMLSchema#int> .
+
+<https://www.hva.nl/rdf/unit/year> a <http://purl.obolibrary.org/obo/UO_0000036> .
+
+#Body weight
+<https://www.hva.nl/rdf/person/2335/body_weight_attribute> a <https://loinc.org/29463-7/>;
+  sio:SIO_000217 <https://www.hva.nl/rdf/person/2335/body_weight_quality> .
+
+<https://www.hva.nl/rdf/person/2335/body_weight_quality> a sio:SIO_000005;
+  sio:SIO_000221 <https://www.hva.nl/rdf/unit/kilogram>;
+  sio:SIO_000300 "100"^^<http://www.w3.org/2001/XMLSchema#float> .
+
+<https://www.hva.nl/rdf/unit/kilogram> a <http://purl.obolibrary.org/obo/UO_0000009> .
+
+#Body height
+<https://www.hva.nl/rdf/person/2335/body_height_attribute> a <https://loinc.org/8302-2/>;
+  sio:SIO_000217 <https://www.hva.nl/rdf/person/2335/body_height_quality> .
+
+<https://www.hva.nl/rdf/person/2335/body_height_quality> a sio:SIO_000005;
+  sio:SIO_000221 <https://www.hva.nl/rdf/unit/centimeter>;
+  sio:SIO_000300 "160"^^<http://www.w3.org/2001/XMLSchema#float> .
+
+<https://www.hva.nl/rdf/unit/centimeter> a <http://purl.obolibrary.org/obo/UO_0000015> .
+
+#Person has attributes and role study subject
+<https://www.hva.nl/rdf/person/2335> sio:SIO_000008 <https://www.hva.nl/rdf/person/2335/body_height_attribute>,
+    <https://www.hva.nl/rdf/person/2335/fat_free_mass_attribute>, <https://www.hva.nl/rdf/person/2335/gender_attribute>;
+  sio:SIO_000228 <https://www.hva.nl/rdf/person/2335/role/study_subject> .
+
+#Gender (masculine)
+<https://www.hva.nl/rdf/person/2335/gender_attribute> a <https://loinc.org/76691-5/>;
+  sio:SIO_000217 <https://www.hva.nl/rdf/gender/1> .
+
+<https://www.hva.nl/rdf/gender/1> a <http://snomed.info/id/703117000> .
+
+#Fat-free mass
+<https://www.hva.nl/rdf/person/2335/fat_free_mass_attribute> a <http://snomed.info/id/248363008>;
+  sio:SIO_000217 <https://www.hva.nl/rdf/person/2335/fat_free_mass_quality> .
+
+<https://www.hva.nl/rdf/person/2335/fat_free_mass_quality> a sio:SIO_000005;
+  sio:SIO_000221 <https://www.hva.nl/rdf/unit/kilogram>;
+  sio:SIO_000300 "60"^^<http://www.w3.org/2001/XMLSchema#float> .
+
+#Role (only human study subject for this example)
+#Role as instance study subject participates in ffm-assessment
+<https://www.hva.nl/rdf/person/2335/role/study_subject> a <http://purl.obolibrary.org/obo/NCIT_C70665>;
+  sio:SIO_000062 <https://www.hva.nl/rdf/person/2335/ffm_assessment> .
+
+#Fat-free mass assessment
+<https://www.hva.nl/person/2335/ffm_assessment> a <http://purl.obolibrary.org/obo/NCIT_C25217>;
+  sio:SIO_000213 <https://www.hva.nl/rdf/person/2335/bodpod>;
+  sio:SIO_000332 <https://www.hva.nl/rdf/person/2335/fat_free_mass_attribute> .
+
+<https://www.hva.nl/rdf/person/2335/bodpod> a <http://purl.obolibrary.org/obo/ERO_0002185> .

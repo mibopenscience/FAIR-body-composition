@@ -1,0 +1,81 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sio: <http://semanticscience.org/resource/> .
+
+#Model with dummy data
+#Person, feminine gender, patient, reactance and resistance via BIA
+
+#Person of type Human being
+#Person has attribute and has role
+<https://www.hva.nl/rdf/person/1> a <http://purl.obolibrary.org/obo/NCBITaxon_9606>;
+  sio:SIO_000008 <https://www.hva.nl/rdf/person/1/age_attribute>, <https://www.hva.nl/rdf/person/1/body_height_attribute>,
+    <https://www.hva.nl/rdf/person/1/body_weight_attribute>, <https://www.hva.nl/rdf/person/1/fat_free_mass_attribute>,
+    <https://www.hva.nl/rdf/person/1/gender_attribute>;
+  sio:SIO_000228 <https://www.hva.nl/rdf/person/1/role/patient>, <https://www.hva.nl/rdf/person/1/role/study_subject> .
+
+#Age
+<https://www.hva.nl/rdf/person/1/age_attribute> a <https://loinc.org/21612-7/>;
+  sio:SIO_000217 <https://www.hva.nl/rdf/person/1/age_quality> .
+
+<https://www.hva.nl/rdf/person/1/age_quality> a sio:SIO_000005;
+  sio:SIO_000221 <https://www.hva.nl/rdf/unit/year>;
+  sio:SIO_000300 "50"^^<http://www.w3.org/2001/XMLSchema#int> .
+
+<https://www.hva.nl/rdf/unit/year> a <http://purl.obolibrary.org/obo/UO_0000036> .
+
+#Body weight
+<https://www.hva.nl/rdf/person/1/body_weight_attribute> a <https://loinc.org/29463-7/>;
+  sio:SIO_000217 <https://www.hva.nl/rdf/person/1/body_weight_quality> .
+
+<https://www.hva.nl/rdf/person/1/body_weight_quality> a sio:SIO_000005;
+  sio:SIO_000221 <https://www.hva.nl/rdf/unit/kilogram>;
+  sio:SIO_000300 "50"^^<http://www.w3.org/2001/XMLSchema#float> .
+
+<https://www.hva.nl/rdf/unit/kilogram> a <http://purl.obolibrary.org/obo/UO_0000009> .
+
+#Body height
+<https://www.hva.nl/rdf/person/1/body_height_attribute> a <https://loinc.org/8302-2/>;
+  sio:SIO_000217 <https://www.hva.nl/rdf/person/1/body_height_quality> .
+
+<https://www.hva.nl/rdf/person/1/body_height_quality> a sio:SIO_000005;
+  sio:SIO_000221 <https://www.hva.nl/rdf/unit/centimeter>;
+  sio:SIO_000300 "150"^^<http://www.w3.org/2001/XMLSchema#float> .
+
+<https://www.hva.nl/rdf/unit/centimeter> a <http://purl.obolibrary.org/obo/UO_0000015> .
+
+#Gender 
+<https://www.hva.nl/rdf/person/1/gender_attribute> a <https://loinc.org/76691-5/>;
+  sio:SIO_000217 <https://www.hva.nl/rdf/gender/2> .
+
+<https://www.hva.nl/rdf/gender/2> a <http://snomed.info/id/703118005> .
+
+#Fat-free mass (FFM) (for this example empty because FFM was calculated via Kyle-formula)
+<https://www.hva.nl/rdf/person/1/fat_free_mass_attribute> a <http://snomed.info/id/248363008>;
+  sio:SIO_000217 <https://www.hva.nl/rdf/person/1/fat_free_mass_quality> .
+
+<https://www.hva.nl/rdf/person/1/fat_free_mass_quality> a sio:SIO_000005;
+  sio:SIO_000221 <https://www.hva.nl/rdf/unit/kilogram> .
+
+#Role (human study subject and for this example patient)
+#Role as instance study subject participates in ffm-assessment
+<https://www.hva.nl/rdf/person/1/role/study_subject> a <http://purl.obolibrary.org/obo/NCIT_C70665>;
+  sio:SIO_000062 <https://www.hva.nl/rdf/person/1/ffm_assessment> .
+
+<https://www.hva.nl/rdf/person/1/role/patient> a <http://purl.obolibrary.org/obo/OBI_0000093> .
+
+#Fat-free mass assessment (for this example only bia, not bodpod)
+<https://www.hva.nl/person/1/ffm_assessment> a <http://purl.obolibrary.org/obo/NCIT_C25217>;
+  sio:SIO_000213 <https://www.hva.nl/rdf/person/1/bia>;
+  sio:SIO_000332 <https://www.hva.nl/rdf/person/1/fat_free_mass_attribute> .
+
+<https://www.hva.nl/rdf/person/1/bia> a <http://purl.obolibrary.org/obo/ERO_0002184>;
+  sio:SIO_000229 <https://www.hva.nl/rdf/person/1/reactance>, <https://www.hva.nl/rdf/person/1/resistance> .
+
+<https://www.hva.nl/rdf/person/1/reactance> a <http://purl.obolibrary.org/obo/NCIT_C43548>;
+  sio:SIO_000221 <https://www.hva.nl/rdf/unit/ohms>;
+  sio:SIO_000300 "50"^^<http://www.w3.org/2001/XMLSchema#float> .
+
+<https://www.hva.nl/rdf/unit/ohms> a <http://purl.obolibrary.org/obo/NCIT_C42554> .
+
+<https://www.hva.nl/rdf/person/1/resistance> a <http://biomodels.net/SBO/SBO_0000254>;
+  sio:SIO_000221 <https://www.hva.nl/rdf/unit/ohms>;
+  sio:SIO_000300 "50"^^<http://www.w3.org/2001/XMLSchema#float> .
