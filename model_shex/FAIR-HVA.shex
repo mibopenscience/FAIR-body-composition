@@ -10,10 +10,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
   sio:SIO_000008 @:personWeightAttributeShape;
   sio:SIO_000008 @:personHeightAttributeShape;
   sio:SIO_000008 @:personGenderAttributeShape;
-  sio:SIO_000008 @:personFFMAttributeShape; 
-  sio:SIO_000228 @:personStudySubjectRoleShape; 
-  sio:SIO_000228 @:personPatientRoleShape* 
-  
+  sio:SIO_000008 @:personFFMAttributeShape;
+  sio:SIO_000228 @:personRoleShape+;
 }
 
 
@@ -45,16 +43,13 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 }
 
 
-:personStudySubjectRoleShape IRI {
+:personRoleShape IRI {
+  (
   a [obo:NCIT_C70665];
-  sio:SIO:000062  @:ffmAssessmentShape*
-}
-
-:personPatientRoleShape IRI {
+  sio:SIO_000062  @:ffmAssessmentShape |
   a [obo:OBI_0000093]
+  )
 }
-
-
 
 
 :personAgeQualityShape IRI {
